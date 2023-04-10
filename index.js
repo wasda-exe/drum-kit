@@ -16,6 +16,15 @@ let audio = new Audio(audioList[element]);
 audio.play();
 }
 
+function drumAnimation(elementKey) {
+    let element = document.querySelector("." + elementKey);
+    
+    element.classList.add("pressed");
+    setTimeout(() => {
+        element.classList.remove("pressed");
+    },200);
+}
+
 
 // add click event listeners to all drum buttons
 drumButtons.forEach(element => {
@@ -23,6 +32,7 @@ drumButtons.forEach(element => {
         // play audio for specific element which calls listener (as listener is given this element)
         // elementName like 'w', 'a'.
         playDrumAudio(element.textContent);
+        drumAnimation(element.textContent);
     })
 });
 
@@ -30,7 +40,8 @@ drumButtons.forEach(element => {
 // add keydown event listener to document
 document.addEventListener("keydown", (event) => {
     // play audio for specific keydown
-    playDrumAudio(event.key); 
+    playDrumAudio(event.key);
+    drumAnimation(event.key);
 });
 
 
